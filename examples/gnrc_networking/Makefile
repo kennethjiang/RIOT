@@ -13,13 +13,18 @@ BOARD_INSUFFICIENT_MEMORY := airfy-beacon chronos msb-430 msb-430h nrf51dongle \
                           yunjia-nrf51822 z1 nucleo-f072 nucleo-f030 nucleo-f070 \
                           microbit calliope-mini
 
+USEMODULE += gnrc_sock_udp
+
+USEPKG += nanocoap
+# optionally enable nanocoap's debug output
+CFLAGS += -DNANOCOAP_DEBUG
+
 # Include packages that pull up and auto-init the link layer.
 # NOTE: 6LoWPAN will be included if IEEE802.15.4 devices are present
 USEMODULE += gnrc_netdev_default
 USEMODULE += auto_init_gnrc_netif
 # Specify the mandatory networking modules for IPv6 and UDP
 USEMODULE += gnrc_ipv6_router_default
-USEMODULE += gnrc_udp
 # Add a routing protocol
 USEMODULE += gnrc_rpl
 USEMODULE += auto_init_gnrc_rpl
